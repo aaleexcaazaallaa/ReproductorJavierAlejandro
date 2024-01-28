@@ -8,45 +8,43 @@
     tools:context=".MainActivity"
     tools:ignore="ExtraText">
 
-    <TextView
-        android:id="@+id/tvGrabaciones"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/KahootLogo"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:gravity="center"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
-        android:paddingBottom="10dp"
-        android:paddingTop="10dp"
-        android:text="GRABACIONES"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:background="@color/purple_200"
-        android:textSize="20sp"/>
+        android:layout_height="match_parent"
+        android:backgroundTint="@color/purple_700">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/tvGrabaciones"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="35dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:text="GRABADOR Y REPRODUCTOR DE VIDEOS"/>
 
-        <Button
-            android:id="@+id/btnGrabar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:onClick="grabarVideo"
-            android:text="GRABAR"
-            android:textAllCaps="false"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            <ImageView
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:background="@drawable/baseline_video_file_24"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25dp"
+                android:textColor="@color/white"
+                android:textStyle="bold|italic"
+                android:textAlignment="center"
+                android:text="- Javier Martínez Megías\n- Alejandro Cazalla Pérez"/>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
