@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "es.iesjandula.reproductorjavieralejandro"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "es.iesjandula.reproductorjavieralejandro"
