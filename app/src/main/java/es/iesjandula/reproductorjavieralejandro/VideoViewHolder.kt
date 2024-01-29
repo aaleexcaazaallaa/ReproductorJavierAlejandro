@@ -8,6 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 
 class VideoViewHolder(var view: View) : RecyclerView.ViewHolder(view)
 {
-    private var url = view.findViewById<TextView>(R.id.tvUrl)
-    private var btnVer = view.findViewById<Button>(R.id.btnVer)
+    var url = view.findViewById<TextView>(R.id.tvUrl)
+    var btnVer = view.findViewById<Button>(R.id.btnVer)
 }

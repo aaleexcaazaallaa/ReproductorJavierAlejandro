@@ -7,6 +7,8 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -34,8 +36,8 @@ class Grabar : AppCompatActivity() {
         //guardar el video
         Intent(MediaStore.ACTION_VIDEO_CAPTURE).also {
                 video -> video.resolveActivity(packageManager)?.also {
-            startActivityForResult(video, REQUEST_VIDEO_CAPTURE)
-        }
+                    startActivityForResult(video, REQUEST_VIDEO_CAPTURE)
+                }
         }
     }
 
@@ -45,8 +47,7 @@ class Grabar : AppCompatActivity() {
         if (requestCode == REQUEST_VIDEO_CAPTURE && resultCode == RESULT_OK) {
             val videoUri: Uri? = data?.data
             videoUri?.let {
-                val listUri: ArrayList<String> =
-                    intent.getStringArrayListExtra("LIST_URI") ?: ArrayList()
+                val listUri: ArrayList<String> = intent.getStringArrayListExtra("LIST_URI") ?: ArrayList()
 
                 if (!listUri.contains(it.toString())) {
                     // Asegura que el video no esté ya en la lista
@@ -57,6 +58,24 @@ class Grabar : AppCompatActivity() {
                 intentReproducir.putExtra("LIST_URI", it.toString())
                 startActivity(intentReproducir)
             }
+        }
+    }
+
+    //mostrar menu
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_grabar, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    //Damos funcionalidad a las opciones
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.Volver -> {
+                val intentVolver = Intent(this, MainActivity::class.java)
+                startActivity(intentVolver)
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
         }
     }
 }
