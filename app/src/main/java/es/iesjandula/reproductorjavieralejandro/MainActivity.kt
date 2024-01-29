@@ -19,7 +19,6 @@ class MainActivity : AppCompatActivity()
 {
     private var url: String? = null
     lateinit var videoList: ArrayList<String>
-    private var comprobar: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -40,9 +39,9 @@ class MainActivity : AppCompatActivity()
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.Grabar -> {
-                val intentGrabar = Intent(this, Grabar::class.java)
-                intentGrabar.putExtra("LIST_URI", videoList)
-                startActivity(intentGrabar)
+                val intent = Intent(this, Grabar::class.java)
+                intent.putExtra("LIST_URI", videoList)
+                startActivity(intent)
                 return true
             }
 

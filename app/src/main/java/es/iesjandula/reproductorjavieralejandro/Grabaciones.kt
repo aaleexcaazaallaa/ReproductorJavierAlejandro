@@ -70,9 +70,9 @@ class Grabaciones : AppCompatActivity()
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.Volver -> {
-                val intentVolver = Intent(this, MainActivity::class.java)
-                intentVolver.putExtra("LIST_URI", this.videoList)
-                startActivity(intentVolver)
+                val intent = Intent(this, MainActivity::class.java)
+                intent.putExtra("LIST_URI", this.videoList)
+                startActivity(intent)
                 return true
             }
             else -> return super.onOptionsItemSelected(item)

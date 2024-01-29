@@ -53,10 +53,10 @@ class Grabar : AppCompatActivity() {
                     // Asegura que el video no esté ya en la lista
                     listUri.add(it.toString())
                 }
-                val intentReproducir = Intent(this, MainActivity::class.java)
-                intentReproducir.putExtra("VIDEO_URI", it.toString())
-                intentReproducir.putExtra("LIST_URI", it.toString())
-                startActivity(intentReproducir)
+                val intent = Intent(this, MainActivity::class.java)
+                intent.putExtra("VIDEO_URI", it.toString())
+                intent.putExtra("LIST_URI", it.toString())
+                startActivity(intent)
             }
         }
     }
@@ -71,8 +71,8 @@ class Grabar : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.Volver -> {
-                val intentVolver = Intent(this, MainActivity::class.java)
-                startActivity(intentVolver)
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
                 return true
             }
             else -> return super.onOptionsItemSelected(item)
