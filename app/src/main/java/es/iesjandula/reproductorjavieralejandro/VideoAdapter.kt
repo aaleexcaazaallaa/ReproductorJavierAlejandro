@@ -11,9 +11,9 @@ import androidx.recyclerview.widget.RecyclerView
 
 class VideoAdapter(private val context: Context, private val listaUri: ArrayList<Uri>) :RecyclerView.Adapter<VideoAdapter.VideoViewHolder>()
 {
-    class VideoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    class VideoViewHolder(view: View) : RecyclerView.ViewHolder(view)
     {
-        val btnVer: Button = itemView.findViewById(R.id.btnVer)
+        val btnVer: Button = view.findViewById(R.id.btnVer)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoViewHolder {

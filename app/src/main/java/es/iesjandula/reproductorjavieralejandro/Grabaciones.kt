@@ -28,10 +28,10 @@ class Grabaciones : AppCompatActivity()
 
     private fun initRecyclerView()
     {
-        val listaUrl: ArrayList<Uri> = parseUris()
+        val videoList: ArrayList<Uri> = parseUris()
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
-        adapter = VideoAdapter(this, listaUrl)
+        adapter = VideoAdapter(this, videoList)
         recyclerView.adapter = adapter
     }
 
@@ -43,21 +43,21 @@ class Grabaciones : AppCompatActivity()
     private fun parseUris(): ArrayList<Uri>
     {
         this.videoList = intent.getStringArrayListExtra("LIST_URI") as ArrayList<String>
-        val listaUri: ArrayList<Uri> = ArrayList()
+        val urlList: ArrayList<Uri> = ArrayList()
 
-        for (uriString in videoList)
+        for (urlString in videoList)
         {
             try
             {
-                val uri: Uri = Uri.parse(uriString)
-                listaUri.add(uri)
+                val url: Uri = Uri.parse(urlString)
+                urlList.add(url)
             }
             catch (e: Exception)
             {
                 Toast.makeText(this, "No se puede pasar a objeto", Toast.LENGTH_SHORT).show()
             }
         }
-        return listaUri
+        return urlList
     }
 
     //mostrar menu
@@ -70,9 +70,9 @@ class Grabaciones : AppCompatActivity()
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.Volver -> {
-                val intent = Intent(this, MainActivity::class.java)
-                intent.putExtra("LIST_URI", videoList)
-                startActivity(intent)
+                val intentVolver = Intent(this, MainActivity::class.java)
+                intentVolver.putExtra("LIST_URI", videoList)
+                startActivity(intentVolver)
                 return true
             }
             else -> return super.onOptionsItemSelected(item)
