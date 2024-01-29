@@ -49,6 +49,7 @@ class Grabar : AppCompatActivity() {
             videoUri?.let {
                 val intentReproducir = Intent(this, MainActivity::class.java)
                 intentReproducir.putExtra("VIDEO_URI", it.toString())
+                intentReproducir.putExtra("LIST_URI", it.toString())
                 startActivity(intentReproducir)
             }
         }

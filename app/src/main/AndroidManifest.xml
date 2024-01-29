@@ -20,6 +20,9 @@
         android:theme="@style/Theme.ReproductorJavierAlejandro"
         tools:targetApi="31">
         <activity
+            android:name=".VerVideo"
+            android:exported="false" />
+        <activity
             android:name=".Grabar"
             android:exported="false" />
         <activity
