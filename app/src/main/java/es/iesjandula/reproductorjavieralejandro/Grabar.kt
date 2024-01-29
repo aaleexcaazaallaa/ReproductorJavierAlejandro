@@ -19,12 +19,6 @@ class Grabar : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_grabar)
 
-        //Pedimos permisos
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
-        {
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 123)
-        }
-
         grabarVideo()
     }
 
