@@ -19,7 +19,6 @@ class MainActivity : AppCompatActivity()
 {
     private var url: String? = null
     lateinit var videoList: ArrayList<String>
-    private var comprobar: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -27,16 +26,7 @@ class MainActivity : AppCompatActivity()
         setContentView(R.layout.activity_main)
 
         url = intent.getStringExtra("VIDEO_URI")
-
-        if(!comprobar)
-        {
-            videoList = intent.getStringArrayListExtra("LIST_URI")?: ArrayList<String>()
-        }
-        else
-        {
-            Toast.makeText(this, "Lista vacia", Toast.LENGTH_SHORT).show()
-        }
-
+        videoList = intent.getStringArrayListExtra("LIST_URI")?: ArrayList()
     }
 
     //mostrar menu
@@ -54,22 +44,21 @@ class MainActivity : AppCompatActivity()
                 startActivity(intentGrabar)
             }
             R.id.Reproducir -> {
-                if(!url.isNullOrEmpty())
-                {
-                    val intentReproducir = Intent(this, Grabaciones::class.java)
-                    intentReproducir.putExtra("VIDEO_URI", url)
-                    if (url != null && !videoList.contains(url!!))
-                    {
+                if (!url.isNullOrEmpty() || !videoList.isEmpty()) {
+                    val intent = Intent(this, Grabaciones::class.java)
+
+                    if (url != null && !videoList.contains(url!!)) {
+                        // Asegura que el video no esté ya en la lista
                         videoList.add(url!!)
                     }
-                    intentReproducir.putExtra("LIST_URI", videoList)
-                    startActivity(intentReproducir)
-                }
-                else
-                {
-                      Toast.makeText(this, "No hay videos", Toast.LENGTH_SHORT).show()
-                }
 
+                    // Pasa la lista de URIs a través del Intent y inicia la actividad
+                    intent.putExtra("LIST_URI", videoList)
+                    startActivity(intent)
+                } else {
+                    // Muestra un mensaje si no se ha grabado ningún video
+                    Toast.makeText(this, "No se ha grabado ningún video", Toast.LENGTH_SHORT).show()
+                }
             }
         }
         return super.onOptionsItemSelected(item)

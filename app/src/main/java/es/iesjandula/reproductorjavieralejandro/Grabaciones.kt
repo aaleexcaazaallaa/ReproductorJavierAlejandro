@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Button
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -33,27 +32,12 @@ class Grabaciones : AppCompatActivity()
         return super.onCreateOptionsMenu(menu)
     }
 
-    //Damos funcionalidad a las opciones
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.Grabar -> {
-                val intentGrabar = Intent(this, Grabar::class.java)
-                startActivity(intentGrabar)
-            }
-            R.id.Volver -> {
-                val intentVolver = Intent(this, MainActivity::class.java)
-                startActivity(intentVolver)
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
     private fun initRecyclerView()
     {
-        val url: ArrayList<Uri> = parsearListaUris()
-
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = VideoAdapter(this, url)
+        val listaUrl: ArrayList<Uri> = parseUris()
+        val layoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = layoutManager
+        adapter = VideoAdapter(this, listaUrl)
         recyclerView.adapter = adapter
     }
 
@@ -62,7 +46,7 @@ class Grabaciones : AppCompatActivity()
         recyclerView = findViewById(R.id.recyclerView)
     }
 
-    private fun parsearListaUris(): ArrayList<Uri>
+    private fun parseUris(): ArrayList<Uri>
     {
         this.videoList = intent.getStringArrayListExtra("LIST_URI") as ArrayList<String>
         val listaUri: ArrayList<Uri> = ArrayList()
@@ -82,6 +66,15 @@ class Grabaciones : AppCompatActivity()
         return listaUri
     }
 
-
-
+    //Damos funcionalidad a las opciones
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.Volver -> {
+                val intentVolver = Intent(this, MainActivity::class.java)
+                intentVolver.putExtra("LIST_URI", this.videoList)
+                startActivity(intentVolver)
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }

@@ -26,12 +26,10 @@ class Grabar : AppCompatActivity() {
         }
 
         grabarVideo()
-        finish()
     }
 
     fun grabarVideo ()
     {
-        REQUEST_VIDEO_CAPTURE = 1
         //Vamos a captura el video, mientras que se captura dicho video va a grabar en un resolveActivity, y ese lo que va a hacer
         //guardar el video
         Intent(MediaStore.ACTION_VIDEO_CAPTURE).also {
@@ -47,6 +45,13 @@ class Grabar : AppCompatActivity() {
         if (requestCode == REQUEST_VIDEO_CAPTURE && resultCode == RESULT_OK) {
             val videoUri: Uri? = data?.data
             videoUri?.let {
+                val listUri: ArrayList<String> =
+                    intent.getStringArrayListExtra("LIST_URI") ?: ArrayList()
+
+                if (!listUri.contains(it.toString())) {
+                    // Asegura que el video no esté ya en la lista
+                    listUri.add(it.toString())
+                }
                 val intentReproducir = Intent(this, MainActivity::class.java)
                 intentReproducir.putExtra("VIDEO_URI", it.toString())
                 intentReproducir.putExtra("LIST_URI", it.toString())

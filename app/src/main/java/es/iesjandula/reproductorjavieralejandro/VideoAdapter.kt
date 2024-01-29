@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.VideoView
 import androidx.recyclerview.widget.RecyclerView
 
 class VideoAdapter(private val context: Context, private val listaUri: ArrayList<Uri>) :RecyclerView.Adapter<VideoAdapter.VideoViewHolder>()
@@ -25,9 +24,10 @@ class VideoAdapter(private val context: Context, private val listaUri: ArrayList
     override fun onBindViewHolder(holder: VideoViewHolder, position: Int) {
         val uri = listaUri[position]
 
+
         holder.btnVer.setOnClickListener {
             val verVideo = Intent(context, VerVideo::class.java)
-            verVideo.putExtra("URI_VIDEO", uri.toString())
+            verVideo.putExtra("VIDEO_URI", uri.toString())
             context.startActivity(verVideo)
         }
     }

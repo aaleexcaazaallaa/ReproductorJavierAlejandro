@@ -8,19 +8,21 @@ import android.widget.Toast
 import android.widget.VideoView
 
 class VerVideo : AppCompatActivity() {
+    private lateinit var videoView: VideoView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ver_video)
 
-        var video: VideoView = findViewById(R.id.videoCompleto)
-        var direccion = intent.getStringExtra("VIDEO_URI")
+        videoView = findViewById(R.id.videoCompleto)
+
+        val direccion = intent.getStringExtra("VIDEO_URI")
 
         if(!direccion.isNullOrEmpty())
         {
             val url = Uri.parse(direccion)
-            video.setVideoURI(url)
-            video.start()
-            video.setOnCompletionListener {
+            videoView.setVideoURI(url)
+            videoView.start()
+            videoView.setOnCompletionListener {
                 finish()
             }
         }
