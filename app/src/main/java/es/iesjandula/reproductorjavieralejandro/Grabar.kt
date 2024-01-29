@@ -26,7 +26,6 @@ class Grabar : AppCompatActivity() {
         }
 
         grabarVideo()
-        finish()
     }
 
     fun grabarVideo ()
@@ -35,8 +34,8 @@ class Grabar : AppCompatActivity() {
         //guardar el video
         Intent(MediaStore.ACTION_VIDEO_CAPTURE).also {
                 video -> video.resolveActivity(packageManager)?.also {
-                    startActivityForResult(video, REQUEST_VIDEO_CAPTURE)
-                }
+            startActivityForResult(video, REQUEST_VIDEO_CAPTURE)
+        }
         }
     }
 

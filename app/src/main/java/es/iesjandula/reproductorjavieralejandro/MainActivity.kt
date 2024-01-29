@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity()
 {
     private var url: String? = null
     lateinit var videoList: ArrayList<String>
+    private var comprobar: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -42,7 +43,9 @@ class MainActivity : AppCompatActivity()
                 val intentGrabar = Intent(this, Grabar::class.java)
                 intentGrabar.putExtra("LIST_URI", videoList)
                 startActivity(intentGrabar)
+                return true
             }
+
             R.id.Reproducir -> {
                 if (!url.isNullOrEmpty() || !videoList.isEmpty()) {
                     val intent = Intent(this, Grabaciones::class.java)
@@ -59,8 +62,9 @@ class MainActivity : AppCompatActivity()
                     // Muestra un mensaje si no se ha grabado ningún video
                     Toast.makeText(this, "No se ha grabado ningún video", Toast.LENGTH_SHORT).show()
                 }
+                return true
             }
+            else -> return super.onOptionsItemSelected(item)
         }
-        return super.onOptionsItemSelected(item)
     }
 }

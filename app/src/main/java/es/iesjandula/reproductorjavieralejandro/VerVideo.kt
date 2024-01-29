@@ -15,7 +15,7 @@ class VerVideo : AppCompatActivity() {
 
         videoView = findViewById(R.id.videoCompleto)
 
-        val direccion = intent.getStringExtra("VIDEO_URI")
+        var direccion = intent.getStringExtra("VIDEO_URI")
 
         if(!direccion.isNullOrEmpty())
         {

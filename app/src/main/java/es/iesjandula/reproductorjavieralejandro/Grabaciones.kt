@@ -34,7 +34,7 @@ class Grabaciones : AppCompatActivity()
 
     private fun initRecyclerView()
     {
-        val listaUrl: ArrayList<Uri> = parseUris()
+        val listaUrl: ArrayList<Uri> = parsearListaUris()
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
         adapter = VideoAdapter(this, listaUrl)
@@ -46,7 +46,7 @@ class Grabaciones : AppCompatActivity()
         recyclerView = findViewById(R.id.recyclerView)
     }
 
-    private fun parseUris(): ArrayList<Uri>
+    private fun parsearListaUris(): ArrayList<Uri>
     {
         this.videoList = intent.getStringArrayListExtra("LIST_URI") as ArrayList<String>
         val listaUri: ArrayList<Uri> = ArrayList()
@@ -69,12 +69,18 @@ class Grabaciones : AppCompatActivity()
     //Damos funcionalidad a las opciones
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            R.id.Grabar -> {
+                val intentGrabar = Intent(this, Grabar::class.java)
+                startActivity(intentGrabar)
+                return true
+            }
             R.id.Volver -> {
                 val intentVolver = Intent(this, MainActivity::class.java)
                 intentVolver.putExtra("LIST_URI", this.videoList)
                 startActivity(intentVolver)
+                return true
             }
+            else -> return super.onOptionsItemSelected(item)
         }
-        return super.onOptionsItemSelected(item)
     }
 }
