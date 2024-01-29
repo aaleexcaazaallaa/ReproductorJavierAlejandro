@@ -62,16 +62,20 @@ class Grabaciones : AppCompatActivity()
         recyclerView = findViewById(R.id.recyclerView)
     }
 
-    private fun parsearListaUris(): ArrayList<Uri> {
+    private fun parsearListaUris(): ArrayList<Uri>
+    {
         this.videoList = intent.getStringArrayListExtra("LIST_URI") as ArrayList<String>
         val listaUri: ArrayList<Uri> = ArrayList()
 
-        // Itera sobre la lista de strings y convierte cada uno en un objeto Uri
-        for (uriString in videoList) {
-            try {
+        for (uriString in videoList)
+        {
+            try
+            {
                 val uri: Uri = Uri.parse(uriString)
                 listaUri.add(uri)
-            } catch (e: Exception) {
+            }
+            catch (e: Exception)
+            {
                 Toast.makeText(this, "No se ha podido convertir la URI a Objeto", Toast.LENGTH_SHORT).show()
             }
         }

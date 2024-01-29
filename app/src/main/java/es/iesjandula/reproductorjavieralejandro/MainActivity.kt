@@ -50,6 +50,7 @@ class MainActivity : AppCompatActivity()
         when (item.itemId) {
             R.id.Grabar -> {
                 val intentGrabar = Intent(this, Grabar::class.java)
+                intentGrabar.putExtra("LIST_URI", videoList)
                 startActivity(intentGrabar)
             }
             R.id.Reproducir -> {
@@ -57,6 +58,10 @@ class MainActivity : AppCompatActivity()
                 {
                     val intentReproducir = Intent(this, Grabaciones::class.java)
                     intentReproducir.putExtra("VIDEO_URI", url)
+                    if (url != null && !videoList.contains(url!!))
+                    {
+                        videoList.add(url!!)
+                    }
                     intentReproducir.putExtra("LIST_URI", videoList)
                     startActivity(intentReproducir)
                 }
