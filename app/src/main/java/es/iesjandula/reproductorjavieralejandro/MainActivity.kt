@@ -44,7 +44,6 @@ class MainActivity : AppCompatActivity()
                 startActivity(intent)
                 return true
             }
-
             R.id.Reproducir -> {
                 if (!url.isNullOrEmpty() || !videoList.isEmpty()) {
                     val intent = Intent(this, Grabaciones::class.java)

@@ -46,16 +46,15 @@ class Grabar : AppCompatActivity() {
 
         if (requestCode == REQUEST_VIDEO_CAPTURE && resultCode == RESULT_OK) {
             val videoUri: Uri? = data?.data
-            videoUri?.let {
-                val listUri: ArrayList<String> = intent.getStringArrayListExtra("LIST_URI") ?: ArrayList()
+            val videoList: ArrayList<String> = intent.getStringArrayListExtra("LIST_URI") ?: ArrayList()
 
-                if (!listUri.contains(it.toString())) {
+            videoUri?.let {
+                if (!videoList.contains(it.toString())) {
                     // Asegura que el video no esté ya en la lista
-                    listUri.add(it.toString())
+                    videoList.add(it.toString())
                 }
                 val intent = Intent(this, MainActivity::class.java)
-                intent.putExtra("VIDEO_URI", it.toString())
-                intent.putExtra("LIST_URI", it.toString())
+                intent.putExtra("LIST_URI", videoList)
                 startActivity(intent)
             }
         }

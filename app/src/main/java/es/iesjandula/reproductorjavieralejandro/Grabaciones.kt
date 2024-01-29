@@ -54,7 +54,7 @@ class Grabaciones : AppCompatActivity()
             }
             catch (e: Exception)
             {
-                Toast.makeText(this, "No se ha podido convertir la URI a Objeto", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "No se puede pasar a objeto", Toast.LENGTH_SHORT).show()
             }
         }
         return listaUri
@@ -71,7 +71,7 @@ class Grabaciones : AppCompatActivity()
         when (item.itemId) {
             R.id.Volver -> {
                 val intent = Intent(this, MainActivity::class.java)
-                intent.putExtra("LIST_URI", this.videoList)
+                intent.putExtra("LIST_URI", videoList)
                 startActivity(intent)
                 return true
             }
