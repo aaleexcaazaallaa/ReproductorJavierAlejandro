@@ -47,6 +47,7 @@ class MainActivity : AppCompatActivity()
 
                     // Pasa la lista de URIs a través del Intent y inicia la actividad
                     intentReproducir.putExtra("LIST_URI", videoList)
+                    intentReproducir.putExtra("VIDEO_URI",url)
                     startActivity(intentReproducir)
                 } else {
                     // Muestra un mensaje si no se ha grabado ningún video

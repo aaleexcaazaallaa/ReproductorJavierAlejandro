@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 
@@ -46,16 +47,24 @@ class Grabar : AppCompatActivity() {
         if (requestCode == REQUEST_VIDEO_CAPTURE && resultCode == RESULT_OK) {
             val videoUrl: Uri? = data?.data
             val videoList: ArrayList<String> = intent.getStringArrayListExtra("LIST_URI") ?: ArrayList()
-
             videoUrl?.let {
                 if (!videoList.contains(it.toString())) {
                     // Asegura que el video no esté ya en la lista
                     videoList.add(it.toString())
                 }
                 val intent = Intent(this, MainActivity::class.java)
+                intent.putExtra("VIDEO_URI", it.toString())
                 intent.putExtra("LIST_URI", videoList)
                 startActivity(intent)
             }
+        }
+        else
+        {
+            val videoList: ArrayList<String> = intent.getStringArrayListExtra("LIST_URI") ?: ArrayList()
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("LIST_URI", videoList)
+            startActivity(intent)
+            Toast.makeText(this, "Grabacion cancelada", Toast.LENGTH_SHORT).show()
         }
     }
 

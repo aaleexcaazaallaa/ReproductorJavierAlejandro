@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class VideoAdapter(private val context: Context, private val listaUri: ArrayList<Uri>) :RecyclerView.Adapter<VideoAdapter.VideoViewHolder>()
@@ -14,6 +15,7 @@ class VideoAdapter(private val context: Context, private val listaUri: ArrayList
     class VideoViewHolder(view: View) : RecyclerView.ViewHolder(view)
     {
         val btnVer: Button = view.findViewById(R.id.btnVer)
+        val tvUrl: TextView = view.findViewById(R.id.tvUrl)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoViewHolder {
@@ -30,6 +32,8 @@ class VideoAdapter(private val context: Context, private val listaUri: ArrayList
             verVideo.putExtra("VIDEO_URI", uri.toString())
             context.startActivity(verVideo)
         }
+
+        holder.tvUrl.text = uri.toString()
     }
 
     override fun getItemCount(): Int {
