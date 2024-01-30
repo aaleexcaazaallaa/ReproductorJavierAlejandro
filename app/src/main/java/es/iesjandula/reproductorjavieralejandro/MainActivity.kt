@@ -41,17 +41,15 @@ class MainActivity : AppCompatActivity()
                     val intentReproducir = Intent(this, Grabaciones::class.java)
 
                     if (url != null && !videoList.contains(url!!)) {
-                        // Asegura que el video no esté ya en la lista
                         videoList.add(url!!)
                     }
 
-                    // Pasa la lista de URIs a través del Intent y inicia la actividad
                     intentReproducir.putExtra("LIST_URI", videoList)
                     intentReproducir.putExtra("VIDEO_URI",url)
                     startActivity(intentReproducir)
-                } else {
-                    // Muestra un mensaje si no se ha grabado ningún video
-                    Toast.makeText(this, "No se ha grabado ningún video", Toast.LENGTH_SHORT).show()
+                } else
+                {
+                    Toast.makeText(this, "No hay videos", Toast.LENGTH_SHORT).show()
                 }
                 return true
             }

@@ -49,7 +49,6 @@ class Grabar : AppCompatActivity() {
             val videoList: ArrayList<String> = intent.getStringArrayListExtra("LIST_URI") ?: ArrayList()
             videoUrl?.let {
                 if (!videoList.contains(it.toString())) {
-                    // Asegura que el video no esté ya en la lista
                     videoList.add(it.toString())
                 }
                 val intent = Intent(this, MainActivity::class.java)
